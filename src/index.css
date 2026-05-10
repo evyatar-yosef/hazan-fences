@@ -399,3 +399,38 @@ details summary::-webkit-details-marker {
     font-size: 13px;
   }
 }
+
+/* --- Form Feedback Messages --- */
+.form-success-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(39, 174, 96, 0.1);
+  border: 1px solid var(--success);
+  color: var(--success);
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.form-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(231, 76, 60, 0.08);
+  border: 1px solid var(--error);
+  color: var(--error);
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+}

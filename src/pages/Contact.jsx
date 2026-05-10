@@ -4,8 +4,12 @@ import PageHero from '../components/PageHero';
 import ScrollReveal from '../components/ScrollReveal';
 import FormField from '../components/FormField';
 import Icons from '../components/Icons';
+import { useFormspree } from '../hooks/useFormspree';
 import { CONTACT_INFO } from '../data/siteData';
 import './Contact.css';
+
+// החלף ב-XXXX את מזהה שתקבל מ-formspree.io אחרי יצירת חשבון
+const CONTACT_FORM_ID = 'XXXX';
 
 const channels = [
   { icon: Icons.phone, label: "קווי", v: CONTACT_INFO.phone, sub: "מענה אנושי 07:00–19:00" },
@@ -14,6 +18,7 @@ const channels = [
 ];
 
 export default function Contact() {
+  const { status, submit } = useFormspree(CONTACT_FORM_ID);
   return (
     <>
       <Helmet>
@@ -70,22 +75,39 @@ export default function Contact() {
                 <div className="eyebrow mono">02 — FORM</div>
                 <h2 className="section-title" style={{ fontSize: 44 }}>או <strong>השאירו פרטים.</strong></h2>
               </ScrollReveal>
-              <form className="contact-form" onSubmit={e => e.preventDefault()}>
+              <form className="contact-form" onSubmit={submit}>
                 <div className="contact-form-grid">
-                  <FormField label="שם מלא" placeholder="ישראל ישראלי" name="name" />
-                  <FormField label="טלפון" placeholder="050-0000000" name="phone" type="tel" />
-                  <FormField label="דוא״ל" placeholder="you@example.com" full name="email" type="email" />
+                  <FormField label="שם מלא" placeholder="ישראל ישראלי" name="name" required />
+                  <FormField label="טלפון" placeholder="050-0000000" name="phone" type="tel" required />
+                  <FormField label="דוא״ל" placeholder="you@example.com" full name="email" type="email" required />
                   <FormField label="תחום עניין" placeholder="השכרה / רכישה / ייעוץ" name="interest" />
                   <FormField label="דחיפות" placeholder="מיידי / שבוע / חודש" name="urgency" />
                 </div>
                 <div className="form-field" style={{ gridColumn: '1 / -1', marginTop: 8 }}>
                   <label>
                     הערות
-                    <textarea rows={4} placeholder="ספרו לנו על הפרויקט..." />
+                    <textarea rows={4} placeholder="ספרו לנו על הפרויקט..." name="notes" />
                   </label>
                 </div>
-                <button type="submit" className="btn btn-primary contact-submit" id="contact-submit-btn">
-                  שליחה ←
+
+                {status === 'success' && (
+                  <div className="form-success-msg">
+                    ✅ הפנייה נשלחה בהצלחה! נחזור אליך תוך 60 דקות.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="form-error-msg">
+                    ⚠️ אירעה שגיאה. נסה שנית או התקשר בטלפון.
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="btn btn-primary contact-submit"
+                  id="contact-submit-btn"
+                  disabled={status === 'submitting' || status === 'success'}
+                >
+                  {status === 'submitting' ? 'שולח...' : 'שליחה ←'}
                 </button>
               </form>
             </div>

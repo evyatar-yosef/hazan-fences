@@ -4,8 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import FormField from '../components/FormField';
 import ScrollReveal from '../components/ScrollReveal';
+import { useFormspree } from '../hooks/useFormspree';
 import { PHOTOS, CATEGORIES } from '../data/siteData';
 import './Rental.css';
+
+// החלף ב-XXXX את מזהה שתקבל מ-formspree.io
+const RENTAL_FORM_ID = 'XXXX';
 
 const SERVICES = [
   { t: "התקנה מלאה", price: "+8%", on: true },
@@ -20,6 +24,7 @@ export default function Rental() {
   const [length, setLength] = useState(250);
   const [selectedType, setSelectedType] = useState(0);
   const [services, setServices] = useState(SERVICES.map(s => s.on));
+  const { status, submit } = useFormspree(RENTAL_FORM_ID);
 
   const basePrice = Math.round(length * 12.5);
   const extras = services.reduce((sum, on, i) => {
@@ -52,7 +57,7 @@ export default function Rental() {
         <div className="container">
           <div className="rental-layout">
             {/* Form */}
-            <form className="rental-form" onSubmit={e => e.preventDefault()}>
+            <form className="rental-form" onSubmit={submit}>
               <div className="eyebrow mono">STEP 1 / 3 · פרטי הפרויקט</div>
 
               <div className="mono rental-label">סוג הגדר</div>
@@ -110,14 +115,30 @@ export default function Rental() {
               </div>
 
               <div className="rental-contact-fields">
-                <FormField label="שם" placeholder="ישראל ישראלי" name="name" />
-                <FormField label="טלפון" placeholder="050-0000000" name="phone" type="tel" />
-                <FormField label="דוא״ל" placeholder="you@example.com" full name="email" type="email" />
+                <FormField label="שם" placeholder="ישראל ישראלי" name="name" required />
+                <FormField label="טלפון" placeholder="050-0000000" name="phone" type="tel" required />
+                <FormField label="דוא״ל" placeholder="you@example.com" full name="email" type="email" required />
                 <FormField label="מיקום הפרויקט" placeholder="רחוב ההגנה 12, ראשל״צ" full name="location" />
               </div>
 
-              <button type="submit" className="btn btn-primary rental-submit" id="rental-submit-btn">
-                שליחה וקבלת הצעה רשמית ←
+              {status === 'success' && (
+                <div className="form-success-msg">
+                  ✅ הבקשה נשלחה! הצעה רשמית תישלח אליך תוך שעה.
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="form-error-msg">
+                  ⚠️ אירעה שגיאה. נסה שנית או התקשר בטלפון.
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="btn btn-primary rental-submit"
+                id="rental-submit-btn"
+                disabled={status === 'submitting' || status === 'success'}
+              >
+                {status === 'submitting' ? 'שולח...' : 'שליחה וקבלת הצעה רשמית ←'}
               </button>
             </form>
 

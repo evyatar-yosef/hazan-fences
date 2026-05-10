@@ -4,8 +4,12 @@ import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
 import FormField from '../components/FormField';
 import Icons from '../components/Icons';
+import { useFormspree } from '../hooks/useFormspree';
 import { PHOTOS, CATEGORIES, CLIENTS, PROJECTS, STATS, PROCESS_STEPS, CONTACT_INFO } from '../data/siteData';
 import './Home.css';
+
+// החלף ב-XXXX את מזהה שתקבל מ-formspree.io
+const CTA_FORM_ID = 'XXXX';
 
 export default function Home() {
   return (
@@ -290,6 +294,7 @@ function ClientsSection() {
 
 /* ===== CTA FORM ===== */
 function CtaFormSection() {
+  const { status, submit } = useFormspree(CTA_FORM_ID);
   return (
     <section className="cta-section">
       <div className="container cta-grid">
@@ -310,19 +315,36 @@ function CtaFormSection() {
         </ScrollReveal>
 
         <ScrollReveal delay={2}>
-          <form className="cta-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="cta-form" onSubmit={submit}>
             <div className="cta-form-grid">
-              <FormField label="שם מלא" placeholder="ישראל ישראלי" name="name" />
-              <FormField label="טלפון" placeholder="050-0000000" name="phone" type="tel" />
-              <FormField label="דוא״ל" placeholder="you@example.com" full name="email" type="email" />
+              <FormField label="שם מלא" placeholder="ישראל ישראלי" name="name" required />
+              <FormField label="טלפון" placeholder="050-0000000" name="phone" type="tel" required />
+              <FormField label="דוא״ל" placeholder="you@example.com" full name="email" type="email" required />
               <FormField label="סוג פרויקט" placeholder="אתר בנייה / אירוע / תשתית" name="project_type" />
               <FormField label="אורך מוערך" placeholder="250 מ׳" name="length" />
               <FormField label="תאריך התחלה" placeholder="01/05/2026" name="start_date" />
               <FormField label="משך ההשכרה" placeholder="3 חודשים" name="duration" />
               <FormField label="הערות" placeholder="שטח משופע, צריך אישור" full name="notes" />
             </div>
-            <button type="submit" className="btn btn-primary cta-submit" id="cta-submit-btn">
-              שלח ← קבל הצעה תוך שעה
+
+            {status === 'success' && (
+              <div className="form-success-msg">
+                ✅ הפנייה נשלחה בהצלחה! נחזור אליך תוך שעה.
+              </div>
+            )}
+            {status === 'error' && (
+              <div className="form-error-msg">
+                ⚠️ אירעה שגיאה. נסה שנית או התקשר בטלפון.
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="btn btn-primary cta-submit"
+              id="cta-submit-btn"
+              disabled={status === 'submitting' || status === 'success'}
+            >
+              {status === 'submitting' ? 'שולח...' : 'שלח ← קבל הצעה תוך שעה'}
             </button>
             <div className="cta-consent mono">
               בלחיצה אני מסכים לקבל תשובה באמצעי שהזנתי
