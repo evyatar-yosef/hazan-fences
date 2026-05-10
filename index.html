@@ -42,6 +42,31 @@
 </head>
 <body>
   <div id="root"></div>
+  
+  <!-- Chat Widget Embed Code -->
+  <div id="chat-widget-a6fdb7ff-244e-4bf4-8c2f-6a910e208cf4"></div>
+  <script>
+    (function() {
+      var script = document.createElement('script');
+      script.src = 'https://chatkoai.com/widget/chat-widget.js';
+      script.async = true;
+      script.onload = function() {
+        ChatWidget.init({
+          agentId: 'a6fdb7ff-244e-4bf4-8c2f-6a910e208cf4',
+          apiUrl: 'https://chatkoai.com',
+          title: "צ'אט עם הסוכן",
+          color: '#3B82F6',
+          position: 'bottom-right',
+          welcomeMessage: 'שלום! איך אני יכול לעזור לך?',
+          placeholder: 'כתוב הודעה...',
+          allowFileUpload: true,
+          showAgentAvatar: true
+        });
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
