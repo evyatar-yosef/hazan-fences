@@ -4,7 +4,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // כתובת המייל שתקבל את הלידים — שנה לפי הצורך
 const TO_EMAIL = process.env.NOTIFY_EMAIL || 'info@hazan-fences.co.il';
-const FROM_EMAIL = 'leads@hazan-fences.co.il'; // חייב להיות דומיין מאומת ב-Resend
+// כתובת השליחה של Resend — עובדת בלי אימות דומיין
+const FROM_EMAIL = 'onboarding@resend.dev';
 
 export default async function handler(req, res) {
   // CORS

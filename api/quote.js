@@ -3,7 +3,8 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const TO_EMAIL = process.env.NOTIFY_EMAIL || 'info@hazan-fences.co.il';
-const FROM_EMAIL = 'leads@hazan-fences.co.il';
+// כתובת השליחה של Resend — עובדת בלי אימות דומיין
+const FROM_EMAIL = 'onboarding@resend.dev';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
