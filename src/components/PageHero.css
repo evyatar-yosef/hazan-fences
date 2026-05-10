@@ -1,0 +1,97 @@
+/* ============================================
+   Page Hero Styles
+   ============================================ */
+
+.page-hero {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 80px;
+}
+
+.page-hero-breadcrumbs {
+  padding-top: 32px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  margin-bottom: 24px;
+}
+
+.page-hero-breadcrumbs a {
+  transition: color var(--duration-fast);
+}
+
+.page-hero-breadcrumbs a:hover {
+  color: var(--text);
+}
+
+.breadcrumb-sep {
+  opacity: 0.4;
+  margin: 0 10px;
+}
+
+.breadcrumb-active {
+  color: var(--text);
+}
+
+.page-hero-content {
+  padding-top: 32px;
+}
+
+.page-hero-content.with-photo {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+
+.page-hero-title {
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 300;
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+
+.page-hero-title strong {
+  font-weight: 900;
+}
+
+.page-hero-subtitle {
+  font-size: 19px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-top: 32px;
+  max-width: 580px;
+}
+
+.page-hero-photo-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 5px 10px;
+  background: var(--orange);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .page-hero-content.with-photo {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-hero {
+    padding-bottom: 48px;
+  }
+
+  .page-hero-subtitle {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+}

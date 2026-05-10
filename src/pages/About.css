@@ -1,0 +1,39 @@
+.about-story { padding: 112px 0; background: var(--paper); }
+.about-story-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; max-width: 1100px; margin: 0 auto; }
+.about-story-text { font-size: 17px; line-height: 1.85; color: var(--text); }
+.about-story-text p:first-child { margin-top: 0; }
+.about-values { padding: 112px 0; background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.about-values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; border-top: 1px solid var(--line); }
+.about-value { padding: 40px 28px 40px 0; border-left: 1px solid var(--line); padding-left: 28px; }
+.about-value:last-child { border-left: none; }
+.about-value-num { font-size: 36px; font-weight: 300; color: var(--orange); letter-spacing: -0.02em; }
+.about-value-title { font-size: 24px; font-weight: 800; margin-top: 16px; color: var(--text); }
+.about-value-desc { font-size: 14px; color: var(--text-muted); margin-top: 10px; line-height: 1.6; }
+.about-team { padding: 112px 0; background: var(--paper); }
+.about-team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+.about-team-info { margin-top: 16px; }
+.about-team-name { font-size: 20px; font-weight: 800; color: var(--text); }
+.about-team-role { font-size: 11px; color: var(--orange); letter-spacing: 0.18em; margin-top: 6px; }
+.about-certs { padding: 72px 0; background: var(--ink); color: #fff; }
+.about-certs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.about-cert { border-left: 1px solid rgba(255,255,255,0.15); padding-left: 28px; padding-right: 28px; }
+.about-cert:last-child { border-left: none; }
+.about-cert:first-child { padding-right: 0; }
+.about-cert-title { font-size: 24px; font-weight: 900; letter-spacing: -0.01em; }
+.about-cert-desc { font-size: 11px; letter-spacing: 0.18em; margin-top: 8px; color: var(--orange); }
+
+@media (max-width: 1024px) {
+  .about-story-layout { grid-template-columns: 1fr; gap: 32px; }
+  .about-values-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-value { border-bottom: 1px solid var(--line); }
+  .about-team-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-certs-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .about-cert { border-left: none; padding: 0; }
+}
+@media (max-width: 768px) {
+  .about-story, .about-values, .about-team { padding: 64px 0; }
+  .about-values-grid { grid-template-columns: 1fr; }
+  .about-value { border-left: none; padding-left: 0; }
+  .about-team-grid { grid-template-columns: 1fr; }
+  .about-certs-grid { grid-template-columns: 1fr; }
+}
