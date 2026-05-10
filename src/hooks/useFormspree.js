@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 /**
- * useFormspree — hook כללי לשליחת טפסים ל-Formspree
- * @param {string} formId — מזהה הטופס מ-Formspree (לקבל ב-formspree.io)
+ * useFormSubmit — hook כללי לשליחת טפסים ל-API הפנימי (Vercel Serverless + Resend)
+ * @param {string} endpoint — נתיב ה-API, לדוגמה: '/api/contact' או '/api/quote'
  */
-export function useFormspree(formId) {
+export function useFormSubmit(endpoint) {
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
 
   async function submit(e) {
@@ -12,12 +12,13 @@ export function useFormspree(formId) {
     setStatus('submitting');
 
     const formData = new FormData(e.target);
+    const body = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch(`https://formspree.io/f/${formId}`, {
+      const res = await fetch(endpoint, {
         method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
       });
 
       if (res.ok) {
@@ -33,3 +34,6 @@ export function useFormspree(formId) {
 
   return { status, submit };
 }
+
+// Backward compat alias (במקרה שנשתמש בשם הישן)
+export const useFormspree = useFormSubmit;

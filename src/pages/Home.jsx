@@ -4,12 +4,9 @@ import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
 import FormField from '../components/FormField';
 import Icons from '../components/Icons';
-import { useFormspree } from '../hooks/useFormspree';
+import { useFormSubmit } from '../hooks/useFormspree';
 import { PHOTOS, CATEGORIES, CLIENTS, PROJECTS, STATS, PROCESS_STEPS, CONTACT_INFO } from '../data/siteData';
 import './Home.css';
-
-// החלף ב-XXXX את מזהה שתקבל מ-formspree.io
-const CTA_FORM_ID = 'XXXX';
 
 export default function Home() {
   return (
@@ -294,7 +291,7 @@ function ClientsSection() {
 
 /* ===== CTA FORM ===== */
 function CtaFormSection() {
-  const { status, submit } = useFormspree(CTA_FORM_ID);
+  const { status, submit } = useFormSubmit('/api/quote');
   return (
     <section className="cta-section">
       <div className="container cta-grid">

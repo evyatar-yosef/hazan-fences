@@ -4,12 +4,9 @@ import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import FormField from '../components/FormField';
 import ScrollReveal from '../components/ScrollReveal';
-import { useFormspree } from '../hooks/useFormspree';
+import { useFormSubmit } from '../hooks/useFormspree';
 import { PHOTOS, CATEGORIES } from '../data/siteData';
 import './Rental.css';
-
-// החלף ב-XXXX את מזהה שתקבל מ-formspree.io
-const RENTAL_FORM_ID = 'XXXX';
 
 const SERVICES = [
   { t: "התקנה מלאה", price: "+8%", on: true },
@@ -24,7 +21,7 @@ export default function Rental() {
   const [length, setLength] = useState(250);
   const [selectedType, setSelectedType] = useState(0);
   const [services, setServices] = useState(SERVICES.map(s => s.on));
-  const { status, submit } = useFormspree(RENTAL_FORM_ID);
+  const { status, submit } = useFormSubmit('/api/quote');
 
   const basePrice = Math.round(length * 12.5);
   const extras = services.reduce((sum, on, i) => {
@@ -58,6 +55,7 @@ export default function Rental() {
           <div className="rental-layout">
             {/* Form */}
             <form className="rental-form" onSubmit={submit}>
+              <input type="hidden" name="form_source" value="rental" />
               <div className="eyebrow mono">STEP 1 / 3 · פרטי הפרויקט</div>
 
               <div className="mono rental-label">סוג הגדר</div>

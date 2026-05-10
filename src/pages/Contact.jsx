@@ -4,12 +4,9 @@ import PageHero from '../components/PageHero';
 import ScrollReveal from '../components/ScrollReveal';
 import FormField from '../components/FormField';
 import Icons from '../components/Icons';
-import { useFormspree } from '../hooks/useFormspree';
+import { useFormSubmit } from '../hooks/useFormspree';
 import { CONTACT_INFO } from '../data/siteData';
 import './Contact.css';
-
-// החלף ב-XXXX את מזהה שתקבל מ-formspree.io אחרי יצירת חשבון
-const CONTACT_FORM_ID = 'XXXX';
 
 const channels = [
   { icon: Icons.phone, label: "קווי", v: CONTACT_INFO.phone, sub: "מענה אנושי 07:00–19:00" },
@@ -18,7 +15,7 @@ const channels = [
 ];
 
 export default function Contact() {
-  const { status, submit } = useFormspree(CONTACT_FORM_ID);
+  const { status, submit } = useFormSubmit('/api/contact');
   return (
     <>
       <Helmet>
