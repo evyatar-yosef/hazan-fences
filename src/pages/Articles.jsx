@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
@@ -16,7 +17,14 @@ const posts = [
 
 export default function Articles() {
   return (
-    <main>
+    <>
+      <Helmet>
+        <title>בלוג גידור — מדריכים, טיפים ומקרי בוחן | חזן גדרות</title>
+        <meta name="description" content="מאמרים מקצועיים על גידור: איך לבחור גדר לאתר בנייה, תקן ישראלי 4273, איסכורית מול רשת, טעויות נפוצות ועוד. 24 שנות של ידע מהשטח." />
+        <meta property="og:title" content="בלוג גידור — מדריכים וטיפים מחזן גדרות" />
+        <link rel="canonical" href="https://hazan-fences.co.il/articles" />
+      </Helmet>
+      <main>
       <PageHero
         eyebrow="JOURNAL · מאמרים"
         title="מאמרים ומדריכים"
@@ -89,5 +97,6 @@ export default function Articles() {
         </div>
       </section>
     </main>
+    </>
   );
 }

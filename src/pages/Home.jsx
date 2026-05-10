@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
 import FormField from '../components/FormField';
@@ -8,16 +9,36 @@ import './Home.css';
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      <MarqueeSection />
-      <CategoriesSection />
-      <ProcessSection />
-      <ProjectsSection />
-      <TestimonialSection />
-      <ClientsSection />
-      <CtaFormSection />
-    </main>
+    <>
+      <Helmet>
+        <title>חזן גדרות — השכרה ומכירת גדרות זמניות לאתרי בנייה ואירועים</title>
+        <meta name="description" content="חזן גדרות — 24 שנות ניסיון בהשכרה, מכירה, התקנה ופירוק גדרות לאתרי בנייה, אירועים ותשתיות. אספקה תוך 24 שעות, פריסה ארצית, תקן ישראלי 4273." />
+        <meta property="og:title" content="חזן גדרות — השכרה ומכירת גדרות זמניות לאתרי בנייה" />
+        <meta property="og:description" content="24 שנות ניסיון בגידור מקצועי. השכרה, מכירה, התקנה ופירוק. אספקה תוך 24 שעות ברחבי הארץ." />
+        <meta property="og:url" content="https://hazan-fences.co.il/" />
+        <link rel="canonical" href="https://hazan-fences.co.il/" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Review",
+            "reviewBody": "עבדנו עם חזן על 6 פרויקטים בשלוש השנים האחרונות. פעם אחת לא הייתה בעיה של לוחות זמנים.",
+            "author": { "@type": "Person", "name": "רוני לוי" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "itemReviewed": { "@type": "LocalBusiness", "name": "חזן גדרות" }
+          }
+        `}</script>
+      </Helmet>
+      <main>
+        <HeroSection />
+        <MarqueeSection />
+        <CategoriesSection />
+        <ProcessSection />
+        <ProjectsSection />
+        <TestimonialSection />
+        <ClientsSection />
+        <CtaFormSection />
+      </main>
+    </>
   );
 }
 

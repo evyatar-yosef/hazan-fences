@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
@@ -31,7 +32,47 @@ const FAQS = [
 export default function Category() {
   const cat = CATEGORIES[0];
   return (
-    <main>
+    <>
+      <Helmet>
+        <title>קטלוג גדרות לאתרי בנייה — כל הסוגים והמחירים | חזן גדרות</title>
+        <meta name="description" content="קטלוג גדרות זמניות לאתרי בנייה, אירועים ותשתיות. מעל מ-60 מוצרים, תקן ישראלי 4273, אספקה תוך 24 שעות. גדרות בנייה, איסכורית, רשת, אירועים ועוד." />
+        <meta property="og:title" content="קטלוג גדרות — חזן גדרות" />
+        <link rel="canonical" href="https://hazan-fences.co.il/category" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "כמה זמן לוקח לקבל אספקה?",
+                "acceptedAnswer": { "@type": "Answer", "text": "ברוב המקרים 24 שעות מאישור הזמנה. במצבי חירום — תוך 4 שעות מאזור המרכז." }
+              },
+              {
+                "@type": "Question",
+                "name": "האם הגדרות עומדות בתקן ישראלי?",
+                "acceptedAnswer": { "@type": "Answer", "text": "כן. כל הגדרות שלנו עומדות בת״י 4273 ומיוצרות תחת ISO 9001:2015." }
+              },
+              {
+                "@type": "Question",
+                "name": "מה מינימום הכמות להזמנה?",
+                "acceptedAnswer": { "@type": "Answer", "text": "אין מינימום למוצר אך יש מינימום חיוב חודשי של 1,800 ₪." }
+              },
+              {
+                "@type": "Question",
+                "name": "האם מחיר ההשכרה כולל התקנה?",
+                "acceptedAnswer": { "@type": "Answer", "text": "התקנה ופירוק הם תוספת אופציונלית של 8% ו-4% בהתאמה. ללקוחות חוזרים — כלול." }
+              },
+              {
+                "@type": "Question",
+                "name": "מה קורה אם הגדר ניזוקת באתר?",
+                "acceptedAnswer": { "@type": "Answer", "text": "בלאי סביר כלול. נזק חריג מחויב לפי טבלת מחיר. ביטוח מורחב — תוספת של 3%." }
+              }
+            ]
+          }
+        `}</script>
+      </Helmet>
+      <main>
       <PageHero
         eyebrow={`CATEGORY · ${cat.code}`}
         title="גדרות"
@@ -132,5 +173,6 @@ export default function Category() {
         </div>
       </section>
     </main>
+    </>
   );
 }

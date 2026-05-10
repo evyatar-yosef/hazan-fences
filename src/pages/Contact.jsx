@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import ScrollReveal from '../components/ScrollReveal';
 import FormField from '../components/FormField';
@@ -14,7 +15,14 @@ const channels = [
 
 export default function Contact() {
   return (
-    <main>
+    <>
+      <Helmet>
+        <title>צור קשר — חזן גדרות, מענה תוך 60 דקות</title>
+        <meta name="description" content="יצירת קשר עם חזן גדרות — טלפון, וואטסאפ וטופס מקוון. מענה אנושי תוך 60 דקות בשעות העבודה. הצעת מחיר לאספקת גדרות לאתר בנייה, אירוע או תשתית." />
+        <meta property="og:title" content="צור קשר | חזן גדרות" />
+        <link rel="canonical" href="https://hazan-fences.co.il/contact" />
+      </Helmet>
+      <main>
       <PageHero
         eyebrow="CONTACT · צור קשר"
         title="מענה תוך"
@@ -96,5 +104,6 @@ export default function Contact() {
         </div>
       </section>
     </main>
+    </>
   );
 }

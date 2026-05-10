@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import FormField from '../components/FormField';
 import ScrollReveal from '../components/ScrollReveal';
@@ -30,7 +31,14 @@ export default function Rental() {
   const total = basePrice + extras + transport;
 
   return (
-    <main>
+    <>
+      <Helmet>
+        <title>מחשבון השכרת גדרות זמניות — מחיר מיידי | חזן גדרות</title>
+        <meta name="description" content="חשב מחיר השכרת גדר זמנית לאתר הבנייה שלך בזמן אמתי. השכרת גדרות זמניות כוללת הובלה, התקנה ופירוק. הצעה רשמית תוך שעה." />
+        <meta property="og:title" content="השכרת גדרות זמניות — מחשבון מחירים" />
+        <link rel="canonical" href="https://hazan-fences.co.il/rental" />
+      </Helmet>
+      <main>
       <PageHero
         eyebrow="RENTAL · השכרה"
         title="מחשבון"
@@ -149,5 +157,6 @@ export default function Rental() {
         </div>
       </section>
     </main>
+    </>
   );
 }

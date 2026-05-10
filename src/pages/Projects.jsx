@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
@@ -7,7 +8,14 @@ import './Projects.css';
 export default function Projects() {
   const allProjects = [...PROJECTS, ...PROJECTS].slice(0, 12);
   return (
-    <main>
+    <>
+      <Helmet>
+        <title>פרויקטים נבחרים — גידור אתרי בנייה ואירועים | חזן גדרות</title>
+        <meta name="description" content="מעל מ-1,800 פרויקטי גידור בישראל. אתרי בנייה, תשתיות, אירועים ופסטיבלים. לקוחות כגון: שיכון ובינוי, אריאל, סולל בניין, פרויקטי רכבת." />
+        <meta property="og:title" content="פרויקטים — חזן גדרות" />
+        <link rel="canonical" href="https://hazan-fences.co.il/projects" />
+      </Helmet>
+      <main>
       <PageHero
         eyebrow="PROJECTS · פרויקטים"
         title="1,847 פרויקטים."
@@ -57,5 +65,6 @@ export default function Projects() {
         </div>
       </section>
     </main>
+    </>
   );
 }

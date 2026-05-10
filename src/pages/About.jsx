@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/PageHero';
 import PhotoCard from '../components/PhotoCard';
 import ScrollReveal from '../components/ScrollReveal';
@@ -25,7 +26,14 @@ const certs = [
 
 export default function About() {
   return (
-    <main>
+    <>
+      <Helmet>
+        <title>אודות חזן גדרות — 24 שנות ניסיון בגידור מקצועי</title>
+        <meta name="description" content="חזן גדרות נוסדה ב-2002 ומאז ביצעה מעל מ-1,800 פרויקטים של גידור ברחבי ישראל. תקן ישראלי 4273, ISO 9001, צוותי התקנה ארציים." />
+        <meta property="og:title" content="אודות חזן גדרות — 24 שנות ניסיון" />
+        <link rel="canonical" href="https://hazan-fences.co.il/about" />
+      </Helmet>
+      <main>
       <PageHero
         eyebrow="ABOUT · אודות"
         title="נוסדנו ב-2002."
@@ -108,5 +116,6 @@ export default function About() {
         </div>
       </section>
     </main>
+    </>
   );
 }
