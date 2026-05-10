@@ -61,6 +61,15 @@ export default function Footer() {
           </span>
         </div>
       </div>
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', background: '#050505', position: 'relative', zIndex: 1, width: '100%' }}>
+        <div style={{ padding: '12px 6px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <span style={{ fontSize: 11, color: '#9ca3af' }}>כל הזכויות שמורות © {new Date().getFullYear()} | עוצב ונבנה ע&quot;י</span>
+          <a href="https://siteko.tech" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#fff', fontSize: 10, textDecoration: 'none', opacity: 0.9 }}>
+            סייטקו מערכות
+            <img src="https://siteko.tech/assets/images/logo-1.webp" alt="Siteko" style={{ height: 36, width: 'auto' }} />
+          </a>
+        </div>
+      </div>
     </footer>
   );
 }
